@@ -20,8 +20,16 @@ app.get('/', function (req, res) {
 });
 
 app.post('/save', function (req, res) {
-  console.log('gothere');
-  res.end('hello');
+
+  var formData = {
+    firstname : req.param('firstname'),
+    lastname  : req.param('lastname'),
+    email     : req.param('email'),
+    password  : req.param('password')
+  };
+
+  console.log(formData);
+  res.json(formData);
 });
 
 
