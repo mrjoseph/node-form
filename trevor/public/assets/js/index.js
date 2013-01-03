@@ -1,18 +1,46 @@
 (function($, window, undefined){
     $(function(){
         var
-        myForm = $('#myform'),
-        submitBtn = $('#submit'),
-        resetBtn = $('#reset');
+        myForm      = $('#myform'),
+        submitBtn   = $('#submit'),
+        resetBtn    = $('#reset');
 
         submitBtn.on('click' ,function(e){
             e.preventDefault();
-            var data = myForm.serializeArray();
-            console.log(data);
-            var myNewObject = getData(data);
-            var result = IsEmail('mr.trevorjoseph@gmail.com');
-            console.log(result);
+            var
+            data        = myForm.serializeArray(),
+            myNewObject = getData(data),
+            result      = IsEmail('mr.trevorjoseph@gmail.com');
+     
+            $.ajax({
+                url     : '/save',
+                type    : 'post',
+                dataType: 'json',
+                data    : myNewObject,
+                success : function(myNewObject){
+                    console.log(myNewObject.firstname);
+                    console.log(myNewObject.lastname);
+                    console.log(myNewObject.email);
+                    console.log(myNewObject.password);
+                },
+                error   : function(xhr, textStatus, errorThrown){
+
+                }
+            });
+
+            setTimeout(function(){
+                $.ajax({
+                    url     : '/display',
+                    type    : 'post',
+                    dataType: 'json',
+                    success : function(html){
+                        console.log(html);
+                    }
+                });
+            },1000);
         });
+
+        //reset form button
         resetBtn.on('click' ,function(e){
             e.preventDefault();
             myForm.find('input[type="text"],input[type="password"]').val('');

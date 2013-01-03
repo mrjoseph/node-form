@@ -1,5 +1,7 @@
 var
 express     = require('express'),
+routes      = require('./routes'),
+http		= require('http'),
 app         = express();
 
 // -- Configuration --
@@ -18,5 +20,10 @@ app.configure(function () {
 app.get('/', function(req,res){
   res.end('hello world');
 });
+
+app.post('/save',routes.index);
+
+app.get('/display',routes.index);
+
 app.listen(4001);
 
