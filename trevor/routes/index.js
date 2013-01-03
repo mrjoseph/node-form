@@ -4,38 +4,40 @@ exports.index = function (req, res) {
 		firstname : req.param('firstname'),
 		lastname  : req.param('lastname'),
 		email     : req.param('email'),
+		username  : req.param('username'),
 		password  : req.param('password')
 	};
 	var saveJSON = JSON.stringify(formData);
-	//console.log(saveJSON);
-	
-
 	var saveData = function(dataToSave){
 		var
 		fs		= require('fs'),
 		file	= 'user.json',
 		path	= 'data/';
 
-		fs.writeFile('data/user.json','{"users":[' + dataToSave + ']}',function(err){
+		//Delete the exisiting contence of the file
+
+		fs.writeFile(path + file,'{"users":[' + dataToSave + ']}',function(err){
 			if(err){
 				console.log('file did not write');
 			} else {
-				console.log('success saving', dataToSave);
+				console.log('success');
 			}
 		});
 	};
 	saveData(saveJSON);
-		var sendData = function (){
-		var fs = require('fs');
-		fs.readFile('../data/user.json','utf8', function(err,data){
-			if (err){
-				return console.log(err);
-			}
-		});
-	var user = JSON.stringify(data);
-	res.send(user);
-	console.log(data);	
-	};
-	sendData();
 };
 
+exports.send =  function(req,res){
+	var 
+	fs		= require('fs'),
+	file	= 'user.json',
+	path	= 'data/';
+
+	fs.readFile(path + file,'utf8', function(err,data){
+		if (err){
+			return console.log(err);
+		}
+		res.send(data);
+		console.log(data);
+	});
+};

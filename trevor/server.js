@@ -23,7 +23,7 @@ app.get('/', function(req,res){
 
 app.post('/save',routes.index);
 
-app.get('/display',routes.index);
+app.get('/display',routes.send);
 
 app.listen(4001);
 
