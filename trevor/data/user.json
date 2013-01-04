@@ -1,1 +1,15 @@
-{"users":[{"firstname":"Anna","lastname":"Havunta","email":"anna.havunta@gmail.com","username":"Anna","password":"password"}]}
+{
+    "users": [
+        {
+            "user_01": [
+                {
+                    "firstname": "Trevor",
+                    "lastname": "Joseph",
+                    "email": "mr.trevorjoseph@gmail.com",
+                    "username": "mrjoseph",
+                    "password": "password"
+                }
+            ]
+        }
+    ]
+}

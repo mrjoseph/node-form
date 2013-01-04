@@ -1,22 +1,39 @@
 exports.index = function (req, res) {
+
 	
 	var formData = {
-		firstname : req.param('firstname'),
-		lastname  : req.param('lastname'),
-		email     : req.param('email'),
-		username  : req.param('username'),
-		password  : req.param('password')
+		firstname	: req.param('firstname'),
+		lastname	: req.param('lastname'),
+		email		: req.param('email'),
+		username	: req.param('username'),
+		password	: req.param('password')
 	};
-	var saveJSON = JSON.stringify(formData);
+	var saveJSON = formData;
 	var saveData = function(dataToSave){
 		var
 		fs		= require('fs'),
 		file	= 'user.json',
 		path	= 'data/';
 
-		//Delete the exisiting contence of the file
+		fs.readFile('data/user.json','utf8', function(err,data){
+		if (err){
+			console.log(err);
+		}
+		console.log(data);
+	});
 
-		fs.writeFile(path + file,'{"users":[' + dataToSave + ']}',function(err){
+		//Delete the exisiting contence of the file
+		var addJSON = {
+			"users": [
+				{
+					"user_01": [
+						dataToSave
+					]
+				}
+			]
+		};
+		//adds new JSON to file
+		fs.writeFile(path + file,JSON.stringify(addJSON, null, 4),function(err){
 			if(err){
 				console.log('file did not write');
 			} else {
@@ -38,6 +55,5 @@ exports.send =  function(req,res){
 			return console.log(err);
 		}
 		res.send(data);
-		console.log(data);
 	});
 };

@@ -5,6 +5,9 @@
         submitBtn   = $('#submit'),
         resetBtn    = $('#reset');
 
+        //load user data
+        getUserData();
+
         submitBtn.on('click' ,function(e){
             e.preventDefault();
             var
