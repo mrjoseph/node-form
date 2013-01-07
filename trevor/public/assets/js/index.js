@@ -14,7 +14,7 @@
             data        = myForm.serializeArray(),
             myNewObject = getData(data),
             result      = IsEmail('mr.trevorjoseph@gmail.com');
-     
+
             $.ajax({
                 url     : '/save',
                 type    : 'post',
@@ -52,7 +52,6 @@
             item = formArray[i];
             obj[item.name] = item.value;
         }
-        console.log(obj);
         return obj;
     };
     var IsEmail = function(email){
@@ -68,16 +67,21 @@
             dataType: 'json',
             cache: false,
             success : function(response){
-                console.log(response);
-                var i, html = '';
-                for (i = 0; i < response.users.length; i++){
-                    html += '<div><strong>Firstname:</strong> ' + response.users[i].firstname + '</div>';
-                    html += '<div><strong>Lastname:</strong> ' + response.users[i].lastname + '</div>';
-                    html += '<div><strong>Email Address:</strong> ' + response.users[i].email + '</div>';
-                    html += '<div><strong>Username:</strong> ' + response.users[i].username + '</div>';
-                    html += '<div><strong>PAssword:</strong> ' + response.users[i].password + '</div>';
+                console.log(response.users);
+                for (var key in response.users){
+                    var obj = response.users[key];
+                    for(var prop in obj){
+                        var users = obj[prop], i, result = '';
+                        for(i=0;i<users.length;i++){
+                            result += '<div><strong>Firstname:</strong> ' + users[i].firstname + '</div>';
+                            result += '<div><strong>Lastname:</strong> ' + users[i].lastname + '</div>';
+                            result += '<div><strong>Email Address:</strong> ' + users[i].email + '</div>';
+                            result += '<div><strong>Username:</strong> ' + users[i].username + '</div>';
+                            result += '<div><strong>PAssword:</strong> ' + users[i].password + '</div>';
+                            $('#users').html(result);
+                        }
+                    }
                 }
-                $('#users').html(html);
             }
         });
     };

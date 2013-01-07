@@ -1,6 +1,6 @@
 exports.index = function (req, res) {
 
-	
+
 	var formData = {
 		firstname	: req.param('firstname'),
 		lastname	: req.param('lastname'),
@@ -19,19 +19,20 @@ exports.index = function (req, res) {
 		if (err){
 			console.log(err);
 		}
-		console.log(data);
 	});
 
-		//Delete the exisiting contence of the file
+		var id = "user_"+1;
+		console.log(id);
 		var addJSON = {
 			"users": [
 				{
-					"user_01": [
+					id: [
 						dataToSave
 					]
 				}
 			]
 		};
+		console.log(addJSON);
 		//adds new JSON to file
 		fs.writeFile(path + file,JSON.stringify(addJSON, null, 4),function(err){
 			if(err){
@@ -45,7 +46,7 @@ exports.index = function (req, res) {
 };
 
 exports.send =  function(req,res){
-	var 
+	var
 	fs		= require('fs'),
 	file	= 'user.json',
 	path	= 'data/';
