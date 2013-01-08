@@ -67,15 +67,19 @@
             dataType: 'json',
             cache: false,
             success : function(response){
-                for (var key in response.users){
-                     var obj = response.users[key], i, result = '';
-                     console.log(obj);
-                     result += '<div>' + obj.firstname + '</div>';
-                     result += '<div>' + obj.lastname + '</div>';
-                     result += '<div>' + obj.email + '</div>';
-                     result += '<div>' + obj.username + '</div>';
-                     result += '<div>' + obj.password + '</div>';
-                     $('#users').html(result);
+                for (var key in response){
+                      var obj = response[key], i, result = '';
+                      for(var prop in obj){
+                        console.log(obj[prop].length);
+                        
+                      }
+  
+                //      result += '<div>' + obj.firstname + '</div>';
+                //      result += '<div>' + obj.lastname + '</div>';
+                //      result += '<div>' + obj.email + '</div>';
+                //      result += '<div>' + obj.username + '</div>';
+                //      result += '<div>' + obj.password + '</div>';
+                      $('#users').html(result);
                 }
             }
         });

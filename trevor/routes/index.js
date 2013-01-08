@@ -8,28 +8,29 @@ exports.index = function (req, res) {
 		username	: req.param('username'),
 		password	: req.param('password')
 	};
-	var saveJSON = formData;
-	var saveData = function(dataToSave){
-		var
-		fs		= require('fs'),
-		file	= 'user.json',
-		path	= 'data/';
-		var existingData = {};
-		fs.readFile(path + file,'utf8', function(err,data){
-			if (err){
-				return console.log(err);
-			}
-			for(var key in data){
-				var obj = data[key];
-				console.log(obj);
-			}
-		});
-		var newUser = newUser || {}, addJSON = addJSON || {};
-		newUser["id" + 1] = dataToSave;
-		addJSON["users"] = newUser;
 
-//		console.log(JSON.stringify(addJSON, null, 4));
-		//adds new JSON to file
+	var
+	fs		= require('fs'),
+	file	= 'user.json',
+	path	= 'data/';
+	var existingData = {};
+	fs.readFile(path + file,'utf8', function(err,data){
+		if (err){
+			return console.log(err);
+		}
+		var newData = JSON.parse(data);
+		var users = users || {};
+
+		var i = 0, item;
+		for (item in newData["users"]){
+			i = i + 1;
+		}
+		var id = i +1;
+		var x = newData["users"];
+
+		x[id] = formData;
+		var addJSON = addJSON || {};
+		addJSON["users"] = x;
 		fs.writeFile(path + file,JSON.stringify(addJSON,null,4),function(err){
 			if(err){
 				console.log('file did not write');
@@ -37,8 +38,8 @@ exports.index = function (req, res) {
 				console.log('success');
 			}
 		});
-	};
-	saveData(saveJSON);
+
+	});
 };
 
 exports.send =  function(req,res){
