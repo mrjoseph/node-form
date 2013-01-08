@@ -67,20 +67,15 @@
             dataType: 'json',
             cache: false,
             success : function(response){
-                console.log(response.users);
                 for (var key in response.users){
-                    var obj = response.users[key];
-                    for(var prop in obj){
-                        var users = obj[prop], i, result = '';
-                        for(i=0;i<users.length;i++){
-                            result += '<div><strong>Firstname:</strong> ' + users[i].firstname + '</div>';
-                            result += '<div><strong>Lastname:</strong> ' + users[i].lastname + '</div>';
-                            result += '<div><strong>Email Address:</strong> ' + users[i].email + '</div>';
-                            result += '<div><strong>Username:</strong> ' + users[i].username + '</div>';
-                            result += '<div><strong>PAssword:</strong> ' + users[i].password + '</div>';
-                            $('#users').html(result);
-                        }
-                    }
+                     var obj = response.users[key], i, result = '';
+                     console.log(obj);
+                     result += '<div>' + obj.firstname + '</div>';
+                     result += '<div>' + obj.lastname + '</div>';
+                     result += '<div>' + obj.email + '</div>';
+                     result += '<div>' + obj.username + '</div>';
+                     result += '<div>' + obj.password + '</div>';
+                     $('#users').html(result);
                 }
             }
         });

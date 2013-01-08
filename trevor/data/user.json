@@ -1,15 +1,18 @@
 {
-    "users": [
-        {
-            "id": [
-                {
-                    "firstname": "Trevor",
-                    "lastname": "Joseph",
-                    "email": "mr.trevorjoseph@gmail.com",
-                    "username": "mrjoseph",
-                    "password": "password"
-                }
-            ]
+    "users": {
+        "id1": {
+            "firstname": "jgjhjhg",
+            "lastname": "Joseph",
+            "email": "mr.trevorjoseph@gmail.com",
+            "username": "mrjoseph",
+            "password": "password"
+        },
+                "id2": {
+            "firstname": "trevor",
+            "lastname": "Joseph",
+            "email": "mr.trevorjoseph@gmail.com",
+            "username": "mrjoseph",
+            "password": "password"
         }
-    ]
+    }
 }

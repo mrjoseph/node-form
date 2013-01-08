@@ -14,27 +14,23 @@ exports.index = function (req, res) {
 		fs		= require('fs'),
 		file	= 'user.json',
 		path	= 'data/';
+		var existingData = {};
+		fs.readFile(path + file,'utf8', function(err,data){
+			if (err){
+				return console.log(err);
+			}
+			for(var key in data){
+				var obj = data[key];
+				console.log(obj);
+			}
+		});
+		var newUser = newUser || {}, addJSON = addJSON || {};
+		newUser["id" + 1] = dataToSave;
+		addJSON["users"] = newUser;
 
-		fs.readFile('data/user.json','utf8', function(err,data){
-		if (err){
-			console.log(err);
-		}
-	});
-
-		var id = "user_"+1;
-		console.log(id);
-		var addJSON = {
-			"users": [
-				{
-					id: [
-						dataToSave
-					]
-				}
-			]
-		};
-		console.log(addJSON);
+//		console.log(JSON.stringify(addJSON, null, 4));
 		//adds new JSON to file
-		fs.writeFile(path + file,JSON.stringify(addJSON, null, 4),function(err){
+		fs.writeFile(path + file,JSON.stringify(addJSON,null,4),function(err){
 			if(err){
 				console.log('file did not write');
 			} else {
